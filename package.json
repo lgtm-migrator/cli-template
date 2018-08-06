@@ -1,0 +1,63 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "bin": {
+    "clitest": "lib/index.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "@types/lodash": "^4.14.116",
+    "@types/node": "^10.5.6",
+    "jest": "^23.4.2",
+    "jest-cli": "^23.4.2",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.2",
+    "standard-version": "^4.4.0",
+    "ts-jest": "^23.1.2",
+    "ts-loader": "^4.4.2",
+    "tslint": "^5.11.0",
+    "tslint-loader": "^3.6.0",
+    "typescript": "^3.0.1"
+  },
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "clean": "rimraf lib",
+    "build": "npm run clean && tsc",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "coverage": "npm test -- --coverage --no-cache",
+    "coverage:watch": "npm run coverage -- --watch",
+    "release": "standard-version --no-verify && git push --follow-tags origin master && npm publish",
+    "prepare": "npm run build && npm test"
+  },
+  "dependencies": {
+    "@types/inquirer": "0.0.42",
+    "cli": "^1.0.1",
+    "inquirer": "^6.0.0",
+    "lodash": "^4.17.5",
+    "mkdirp": "^0.5.1",
+    "uuid": "^3.3.2"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/tests/",
+      "/node_modules/"
+    ],
+    "testEnvironment": "node",
+    "testRegex": "tests/.*\\.spec\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
+  },
+  "description": "",
+  "license": "MIT"
+}
